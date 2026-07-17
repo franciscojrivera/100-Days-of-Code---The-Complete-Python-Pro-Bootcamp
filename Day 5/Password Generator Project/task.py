@@ -18,6 +18,8 @@ for i in range(nr_symbols):
 for i in range(nr_numbers):
     password += str(random.choice(numbers))
 
+#test
+
 print("Your password is: ", password)
 
 
