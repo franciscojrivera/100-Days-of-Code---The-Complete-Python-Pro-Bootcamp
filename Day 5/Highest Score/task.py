@@ -4,4 +4,5 @@ max = 0
 for max_score in student_scores:
     if max_score > max:
         max = max_score
+
 print(f"{max}")
