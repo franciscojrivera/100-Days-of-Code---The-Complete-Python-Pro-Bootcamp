@@ -5,30 +5,24 @@ word_list = ["aardvark", "baboon", "camel"]
 chosen_word = random.choice(word_list)
 print(chosen_word)
 
-blank_list = []
-blank_word = ""
+#blank_list = []
+placeholder = ""
 for char in chosen_word:
-    blank_list.append('_')
-for char in blank_list:
-    blank_word += char
+    placeholder += '_'
 
-print(blank_word)
+print(placeholder)
 
 # TODO-2 - Ask the user to guess a letter and assign their answer to a variable called guess. Make guess lowercase.
 guess = input("Guess a letter: ").lower()
 # TODO-3 - Check if the letter the user guessed (guess) is one of the letters in the chosen_word. Print "Right" if it
 #  is, "Wrong" if it's not.
 
-for pos, char in enumerate(chosen_word):
-    if char == guess:
-        blank_list[pos] = char
-        print("Right")
+display = ""
+
+for letter in chosen_word:
+    if letter == guess:
+        display += letter
     else:
-        print("Wrong")
+        display += '_'
 
-blank_word = ""
-
-for char in blank_list:
-    blank_word += char
-
-print(blank_word)
+print(display)
