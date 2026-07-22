@@ -15,6 +15,7 @@ def encrypt(original_text, shift_amount):
         # get position of letter in alphabet list
         position = alphabet.index(char)
 
+# TODO-4: What happens if you try to shift z forwards by 9? Can you fix the code?
         if (position + shift_amount) > 25:
             new_shift = shift_amount % 25
             new_word += alphabet[new_shift - 1]
@@ -22,8 +23,6 @@ def encrypt(original_text, shift_amount):
             new_word += alphabet[(position + shift_amount)]
 
     print(new_word)
-
-# TODO-4: What happens if you try to shift z forwards by 9? Can you fix the code?
 
 # TODO-3: Call the 'encrypt()' function and pass in the user inputs. You should be able to test the code and encrypt a
 #  message.
