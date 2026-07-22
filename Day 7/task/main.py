@@ -50,7 +50,7 @@ while not game_over:
         lives -= 1
 
         if lives == 0:
-            game_over = True
+            game_over = True\
 
             # TODO 7: - Update the print statement below to give the user the correct word they were trying to guess.
             print("The word was " + chosen_word)
