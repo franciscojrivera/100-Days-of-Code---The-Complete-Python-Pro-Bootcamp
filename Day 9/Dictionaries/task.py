@@ -17,5 +17,8 @@ programming_dictionary["Bug"] = "A moth in your computer"
 print(programming_dictionary)
 
 # Loop through a dictionary
-for thing in programming_dictionary:
-    print(thing)
+for key in programming_dictionary:
+    print(key)
+    print(programming_dictionary[key])
+
+    
