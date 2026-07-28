@@ -6,3 +6,12 @@ def format_name(f_name, l_name):
 
 formated_string = format_name("francisco", "rivera")
 print(formated_string)
+
+def fucntion_1(text):
+    return text + text
+
+def function_2(text):
+    return text.title()
+
+output = function_2(fucntion_1("hello"))
+print(output)
