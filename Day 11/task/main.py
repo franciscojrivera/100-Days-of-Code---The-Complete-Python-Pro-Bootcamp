@@ -1,10 +1,11 @@
 import art
 import random
+import sys
 
 print(art.logo)
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
-player = []
+player = [11]
 dealer = []
 
 #Ask player if they want to play
@@ -33,30 +34,43 @@ hit = input("Would you like another card? y/n")
 #TODO special case for Ace cards
 while hit == "y":
     player.append(random.choice(cards))
-
     #Add score for player
     playerscore = sum(player)
+
+    #if player is over 21 but contains 11, turn 11 card into a 1
+    if playerscore > 21 and 11 in player:
+        #iterate through list and turn 11s into 1s, keeping same list
+        for index, value in enumerate(player):
+            if value == 11:
+                player[index] = 1
+
+    #update sum since value was changed
+    playerscore = sum(player)
+
     if playerscore > 21:
         print(f"Player: {player} score: {playerscore}")
         print(f"Dealer's first card: {dealer} score: {dealerscore}")
         print("You went over 21, you lose!")
-        break
+        sys.exit()
 
     print(f"Player: {player} score: {playerscore}")
     print(f"Dealer's first card: {dealer} score: {dealerscore}")
     hit = input("Would you like another card? y/n")
 
+#TODO special case for Ace cards
 #player chooses to not deal anymore, dealers turn
 while dealerscore < 17:
     dealer.append(random.choice(cards))
     dealerscore = sum(dealer)
 
-#TODO if dealer goes over 21????
 
 print(f"Player: {player} score: {playerscore}")
 print(f"Dealer's first card: {dealer} score: {dealerscore}")
 
-if playerscore > dealerscore:
+if dealerscore > 21:
+    print("You win!")
+
+elif playerscore > dealerscore:
     print("You win!")
 
 elif playerscore == dealerscore:
