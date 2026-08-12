@@ -5,7 +5,7 @@ import sys
 print(art.logo)
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
-player = [11]
+player = []
 dealer = []
 
 #Ask player if they want to play
@@ -31,7 +31,7 @@ print(f"Dealer's first card: {dealer[0]}")
 hit = input("Would you like another card? y/n")
 
 
-#TODO special case for Ace cards
+
 while hit == "y":
     player.append(random.choice(cards))
     #Add score for player
@@ -63,9 +63,19 @@ while dealerscore < 17:
     dealer.append(random.choice(cards))
     dealerscore = sum(dealer)
 
+#if player is over 21 but contains 11, turn 11 card into a 1
+if dealerscore > 21 and 11 in dealer:
+#iterate through list and turn 11s into 1s, keeping same list
+    for index, value in enumerate(dealer):
+        if value == 11:
+            dealer[index] = 1
+
+#update sum since value was changed
+dealerscore = sum(dealer)
+
 
 print(f"Player: {player} score: {playerscore}")
-print(f"Dealer's first card: {dealer} score: {dealerscore}")
+print(f"Dealery: {dealer} score: {dealerscore}")
 
 if dealerscore > 21:
     print("You win!")
