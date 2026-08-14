@@ -32,7 +32,7 @@ while blackjack == 'y':
     #Ask player if they want another card
     hit = input("Would you like another card? y/n ")
 
-
+    player_bust = False
 
     while hit == "y":
         player.append(random.choice(cards))
@@ -51,6 +51,10 @@ while blackjack == 'y':
 
         #TODO fix this line of code
         if playerscore > 21:
+            player_bust = True
+            print(f"Player: {player} score: {playerscore}")
+            print(f"Dealer's first card: {dealer} score: {dealerscore}")
+            print("You lose! Bust!")
             break
 
 
@@ -59,36 +63,40 @@ while blackjack == 'y':
         print(f"Dealer's first card: {dealer} score: {dealerscore}")
         hit = input("Would you like another card? y/n")
 
-    #player chooses to not deal anymore, dealers turn
-    while dealerscore < 17:
-        dealer.append(random.choice(cards))
+
+
+
+    if not player_bust:
+        #player chooses to not deal anymore, dealers turn
+        while dealerscore < 17:
+            dealer.append(random.choice(cards))
+            dealerscore = sum(dealer)
+
+        #if player is over 21 but contains 11, turn 11 card into a 1
+        if dealerscore > 21 and 11 in dealer:
+        #iterate through list and turn 11s into 1s, keeping same list
+            for index, value in enumerate(dealer):
+                if value == 11:
+                    dealer[index] = 1
+
+        #update sum since value was changed
         dealerscore = sum(dealer)
 
-    #if player is over 21 but contains 11, turn 11 card into a 1
-    if dealerscore > 21 and 11 in dealer:
-    #iterate through list and turn 11s into 1s, keeping same list
-        for index, value in enumerate(dealer):
-            if value == 11:
-                dealer[index] = 1
 
-    #update sum since value was changed
-    dealerscore = sum(dealer)
+        print(f"Player: {player} score: {playerscore}")
+        print(f"Dealer: {dealer} score: {dealerscore}")
 
+        if dealerscore > 21:
+            print("You win!")
 
-    print(f"Player: {player} score: {playerscore}")
-    print(f"Dealer: {dealer} score: {dealerscore}")
+        elif playerscore > dealerscore:
+            print("You win!")
 
-    if dealerscore > 21:
-        print("You win!")
+        elif playerscore == dealerscore:
+            print("Draw")
 
-    elif playerscore > dealerscore:
-        print("You win!")
-
-    elif playerscore == dealerscore:
-        print("Draw")
-
-    else:
-        print("You lose!")
+        else:
+            print("You lose!")
 
     blackjack = input("Do you want to play a game of Blackjack y/n")
 
